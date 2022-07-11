@@ -1,0 +1,11 @@
+.mainIcons {
+    width: 200px;
+    height: 200px;
+    background-color: slategray;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.mainBackground {
+    background-color: slategray;
+}
