@@ -22,12 +22,13 @@ const UserSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 UserSchema.virtual('confirmPassword')
-    .get(()=> this._confirmPassowrd)
-    .set(value => this._confirmPassword = value);
+    .get(()=> this._confirmPassword)
+    .set((value) => this._confirmPassword = value);
 
 UserSchema.pre('validate', function(next) {
     if (this.password !== this.confirmPassword) {
         this.invalidate('confirmPassword', 'Password must match confirm password');
+        console.log("Passwords don't match")
     }
     next();
 });

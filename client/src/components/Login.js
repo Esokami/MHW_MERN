@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/esm/Button';
@@ -9,6 +9,7 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
@@ -19,7 +20,8 @@ const Login = () => {
         axios.post('http://localhost:8000/api/users/register', {
             email,
             username,
-            password
+            password,
+            confirmPassword
         })
             .then((res) => {
                 console.log(res);
@@ -64,19 +66,19 @@ const Login = () => {
                         <Form.Group>
                             <div>
                                 <Form.Label>Email:</Form.Label>
-                                <Form.Control type="text"></Form.Control>
+                                <Form.Control type="text" onChange={(e) => setEmail(e.target.value)}></Form.Control>
                             </div>
                             <div>
                                 <Form.Label>Username:</Form.Label>
-                                <Form.Control type="text"></Form.Control>
+                                <Form.Control type="text" onChange={(e) => setUsername(e.target.value)}></Form.Control>
                             </div>
                             <div>
                                 <Form.Label>Password:</Form.Label>
-                                <Form.Control type="password"></Form.Control>
+                                <Form.Control type="password" onChange={(e) => setPassword(e.target.value)}></Form.Control>
                             </div>
                             <div>
                                 <Form.Label>Confirm Password:</Form.Label>
-                                <Form.Control type="password"></Form.Control>
+                                <Form.Control type="password" onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
                             </div>
                         </Form.Group>
                         <Button className='m-2' variant='info' type="submit">Register</Button>

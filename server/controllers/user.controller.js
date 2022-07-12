@@ -3,45 +3,68 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 
 module.exports.register = (req, res) => {
-    User.create(req.body)
-        .then((user) => {
-            const userToken = jwt.sign({
-                id: user._id
-            }, process.env.SECRET_KEY);
+    const user = new User (req.body);
 
-            res 
-                .cookie("usertoken", userToken, secret, {
-                    httpOnly: true
-                })
-                .json({msg: "success!", user: user});
+    user.save()
+        .then((newUser) => {
+            console.log(newUser);
+            console.log("Successfully registered");
+            res.json({
+                successMessage: "Thank you for registering",
+                user: newUser
+            })
         })
         .catch((err) => {
-            res.json(err);
+            console.log("Register not successful")
+            res.status(400).json(err)
         })
 }
 
-module.exports.login = async(req, res) => {
-    const user = await User.findOne({email: req.body.email});
-
-    if (user === null){
-        return res.sendStatus(400);
-    }
-
-    const correctPassword = await bcrypt.compare(req.body.password, user.password);
-
-    if (!correctPassword){
-        return res.sendStatus(400);
-    }
-
-    const userToken = jwt.sign({
-        id: user._id
-    }, process.env.SECRET_KEY);
-
-    res
-        .cookie("usertoken", userToken, secret, {
-            httpOnly: true
+module.exports.login = (req, res) => {
+    User.findOne({email: req.body.email})
+        .then((user) => {
+            if (user === null) {
+                res.status(400).json({message: "Invalid Login Attempt"})
+            }
+            else{
+                bcrypt.compare(req.body.password, user.password)
+                    .then((isPasswordValid) => {
+                        if(isPasswordValid) {
+                            console.log("Password is valid");
+                            res.cookie(
+                                "usertoken",
+                                jwt.sign(
+                                    {
+                                        id: user._id,
+                                        email: user.email,
+                                        username: user.username
+                                    },
+                                    process.env.SECRET_KEY
+                                ),
+                                {
+                                    httpOnly: true,
+                                    expires: new Date(Date.now() + 9000000)
+                                }
+                            ).json({
+                                message: "Successful",
+                                userLoggedIn: user.username,
+                                userId: user._id
+                            });
+                        }
+                        else{
+                            res.status(400).json({message: "Invalid Attempt"})
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(400).json({message: "Invalid Attempt"})
+                    })
+            }
         })
-        .json({msg: "success!"});
+        .catch((err) => {
+            console.log(err);
+            res.status(400).json({message: "Invalid Attempt"})
+        })
 }
 
 module.exports.logout = (req, res) => {
@@ -50,11 +73,8 @@ module.exports.logout = (req, res) => {
 }
 
 module.exports.getLoggedInUser = (req, res) => {
-    const decodedJWT = jwt.decode(req.cookies.userToken, {
-        complete: true
-    })
 
-    User.findOne({_id: decodedJWT.payload.id})
+    User.findOne({_id: req.jwtpayload.id})
         .then((user) => {
             console.log(user);
             res.json(user);

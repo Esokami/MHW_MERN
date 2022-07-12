@@ -1,12 +1,16 @@
 const UserController = require('../controllers/user.controller');
+const {authenticate} = require('../config/jwt.config');
 
 module.exports = (app) => {
     //Used to create user
-    app.post("/api/users/register", UserController.register);
+    app.post('/api/users/register', UserController.register);
 
-    app.post("/api/users/login", UserController.login);
+    //Used to login user
+    app.post('/api/users/login', UserController.login);
 
-    app.post("/api/users/logout", UserController.logout);
+    //Userd to logout user
+    app.post('/api/users/logout', UserController.logout);
 
-    app.get("/api/users", UserController.getLoggedInUser);
+    //Used to check if user is logged in
+    app.get('/api/users', authenticate, UserController.getLoggedInUser);
 }

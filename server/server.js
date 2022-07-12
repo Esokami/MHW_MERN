@@ -1,4 +1,4 @@
-require('dotenv').config;
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-const server = app.listen(process.env.port, () => {
-    console.log(`Listening on port: ${process.env.port}`)
+const server = app.listen(port, () => {
+    console.log(`Listening on port: ${port}`)
 })
 
 require('./config/mongoose.config');
