@@ -39,7 +39,7 @@ module.exports.login = (req, res) => {
                                         email: user.email,
                                         username: user.username
                                     },
-                                    process.env.SECRET_KEY
+                                    process.env.JWT_SECRET
                                 ),
                                 {
                                     httpOnly: true,
@@ -48,7 +48,6 @@ module.exports.login = (req, res) => {
                             ).json({
                                 message: "Successful",
                                 userLoggedIn: user.username,
-                                userId: user._id
                             });
                         }
                         else{
@@ -68,8 +67,12 @@ module.exports.login = (req, res) => {
 }
 
 module.exports.logout = (req, res) => {
-    res.clearkCookie('usertoken');
+    console.log("User logged out")
+    res.clearCookie('usertoken');
     res.sendStatus(200);
+    res.json({
+        message: "Successfully logged out"
+    })
 }
 
 module.exports.getLoggedInUser = (req, res) => {

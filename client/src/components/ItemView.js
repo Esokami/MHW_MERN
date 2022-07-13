@@ -21,6 +21,18 @@ const ItemView = () => {
             })
     })
 
+    const deleteItem = (itemId) => {
+        axios.delete('http://localhost:8000/api/items/' + itemId)
+            .then((res) => {
+                const newItemList = item.filter((item, index) => item._id !== itemId);
+                navigate("/dashboard");
+                setItem(newItemList);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     return (
         <Container>
             <div className='d-flex justify-content-between'>
@@ -32,8 +44,8 @@ const ItemView = () => {
             </div>
             <div>
                 <div className='d-flex justify-content-between'>
-                    <h3>Anguish {item.name}</h3>
-                    <Link to="/items/edit">Edit</Link>
+                    <h3>{item.name}</h3>
+                    <Link to={`/items/update/${item._id}`}>Edit</Link>
                 </div>
                 <Table>
                     <thead>
@@ -44,8 +56,8 @@ const ItemView = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Great Sword {item.objectType}</td>
-                            <td>Deviljho {item.monster}</td>
+                            <td>{item.objectType}</td>
+                            <td>{item.monster}</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -59,13 +71,13 @@ const ItemView = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Deviljho Tallfang {item.materialName}</td>
-                            <td>3 {item.quantityOwned}</td>
-                            <td>2 {item.quantityNeeded}</td>
+                            <td>{item.materialName}</td>
+                            <td>{item.quantityOwned}</td>
+                            <td>{item.quantityNeeded}</td>
                         </tr>
                     </tbody>
                 </Table>
-                <Button className='m-2' variant='danger' type="submit">Delete</Button>
+                <Button variant="danger" onClick={() => {deleteItem(item._id)}}>Delete</Button>
                 </div>
         </Container>
     )

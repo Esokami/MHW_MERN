@@ -1,11 +1,8 @@
 const jwt = require('jsonwebtoken');
-const secret = "secret";
-
-module.exports.secret = secret;
 
 module.exports.authenticate = (req, res, next) => {
     jwt.verify(req.cookies.usertoken,
-        process.env.SECRET_KEY,
+        process.env.JWT_SECRET,
         (err, payload) => {
             if(err){
                 console.log(err);

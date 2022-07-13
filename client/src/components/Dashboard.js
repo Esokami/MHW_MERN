@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 const Dashboard = (props) => {
     const [items, setItems] = useState([]);
+    const [user, setUser] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,10 +32,24 @@ const Dashboard = (props) => {
             })
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/users',
+            {withCredentials: true}
+        )
+            .then((res) => {
+                console.log(res.data);
+                setUser(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [])
+
     return (
         <Container>
             <div>
                 <h4>Monster Hunter World</h4>
+                <Link to={"/"}>Logout</Link>
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <h2>Monster Drop Tracker</h2>
@@ -58,11 +73,11 @@ const Dashboard = (props) => {
                             items.map((item, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>Anguish {item.name}</td>
-                                        <td>Great Sword {item.objectType}</td>
-                                        <td>Deviljho {item.monster}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.objectType}</td>
+                                        <td>{item.monster}</td>
                                         <td><Link to={`/items/view/${item._id}`}>View</Link></td>
-                                        <td><Button variant="warning" onClick={() => {deleteItem(item._id)}}>Delete</Button></td>
+                                        <td><Button variant="danger" onClick={() => {deleteItem(item._id)}}>Delete</Button></td>
                                     </tr>
                                     )
                             })

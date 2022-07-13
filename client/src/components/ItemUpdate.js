@@ -10,7 +10,7 @@ const ItemUpdate = (props) => {
     const [name, setName] = useState("");
     const [objectType, setObjectType] = useState("");
     const [monster, setMonster] = useState("");
-    const [material, setMaterial] = useState("");
+    const [materialName, setMaterialName] = useState("");
     const [quantityOwned, setQuantityOwned] = useState("");
     const [quantityNeeded, setQuantityNeeded] = useState("");
 
@@ -24,7 +24,7 @@ const ItemUpdate = (props) => {
                 setName(res.data.name);
                 setObjectType(res.data.objectType);
                 setMonster(res.data.monster);
-                setMaterial(res.data.material);
+                setMaterialName(res.data.materialName);
                 setQuantityOwned(res.data.quantityOwned);
                 setQuantityNeeded(res.data.quantityNeeded);
             })
@@ -36,13 +36,16 @@ const ItemUpdate = (props) => {
     const updateItem = (e) => {
         e.preventDefault();
 
-        axios.put('http://localhost:8000/api/items' + id, {
+        axios.put('http://localhost:8000/api/items/' + id, {
             name,
             objectType,
             monster,
-            material,
+            materialName,
             quantityOwned,
             quantityNeeded
+        }, 
+        {
+            withCredentials: true
         })
 
             .then((res) => {
@@ -54,6 +57,10 @@ const ItemUpdate = (props) => {
                 console.log(err);
                 setErrors(err.response.data.errors);
             })
+    }
+
+    const cancelButton = () => {
+        navigate("/dashboard")
     }
 
     return (
@@ -96,15 +103,15 @@ const ItemUpdate = (props) => {
                     <div className='p-2 border border-dark'>
                         <h4>Optional</h4>
                         <Form.Label>Material Name:</Form.Label>
-                            <Form.Control type="text" name="material" value={material} onChange={(e) => setMaterial(e.target.value)}></Form.Control>
+                            <Form.Control type="text" name="material" value={materialName} onChange={(e) => setMaterialName(e.target.value)}></Form.Control>
                         <Form.Label>Quantity Owned:</Form.Label>
                             <Form.Control type="number" name="quantityOwned" value={quantityOwned} onChange={(e) => setQuantityOwned(e.target.value)}></Form.Control>
                         <Form.Label>Quantity Needed:</Form.Label>
                             <Form.Control type="number" name="quantityNeeded" value={quantityNeeded} onChange={(e) => setQuantityNeeded(e.target.value)}></Form.Control>
                     </div>
                 </Form.Group>
-                <Button className='m-2' variant="success" type="submit">Create</Button>
-                <Button className='m-2' variant="warning" type="submit">Cancel</Button>
+                <Button className='m-2' variant="info" type="submit">Update</Button>
+                <Button className='m-2' variant="warning" onClick={(cancelButton)}>Cancel</Button>
             </Form>
         </Container>
     )

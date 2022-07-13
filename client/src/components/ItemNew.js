@@ -10,7 +10,7 @@ const ItemNew = (props) => {
     const [name, setName] = useState("");
     const [objectType, setObjectType] = useState("");
     const [monster, setMonster] = useState("");
-    const [material, setMaterial] = useState("");
+    const [materialName, setMaterialName] = useState("");
     const [quantityOwned, setQuantityOwned] = useState("");
     const [quantityNeeded, setQuantityNeeded] = useState("");
 
@@ -20,13 +20,15 @@ const ItemNew = (props) => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/items', {
+        axios.post('http://localhost:8000/api/items/', {
             name,
             objectType,
             monster,
-            material,
+            materialName,
             quantityOwned,
             quantityNeeded
+        },{
+            withCredentials: true
         })
 
             .then((res) => {
@@ -39,6 +41,10 @@ const ItemNew = (props) => {
                 console.log(err);
                 setErrors(err.response.data.errors);
             })
+    }
+
+    const cancelButton = () => {
+        navigate("/dashboard")
     }
 
     return (
@@ -81,15 +87,15 @@ const ItemNew = (props) => {
                     <div className='p-2 border border-dark'>
                         <h4>Optional</h4>
                         <Form.Label>Material Name:</Form.Label>
-                            <Form.Control type="text" onChange={(e) => setMaterial(e.target.value)}></Form.Control>
-                        <Form.Label>Quantity Ownded:</Form.Label>
+                            <Form.Control type="text" onChange={(e) => setMaterialName(e.target.value)}></Form.Control>
+                        <Form.Label>Quantity Owned:</Form.Label>
                             <Form.Control type="number" onChange={(e) => setQuantityOwned(e.target.value)}></Form.Control>
                         <Form.Label>Quantity Needed:</Form.Label>
                             <Form.Control type="number" onChange={(e) => setQuantityNeeded(e.target.value)}></Form.Control>
                     </div>
                 </Form.Group>
                 <Button className='m-2' variant="success" type="submit">Create</Button>
-                <Button className='m-2' variant="warning" type="submit">Cancel</Button>
+                <Button className='m-2' variant="warning" onClick={(cancelButton)}>Cancel</Button>
             </Form>
         </Container>
     )
