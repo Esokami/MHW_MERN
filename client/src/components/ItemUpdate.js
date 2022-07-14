@@ -65,14 +65,14 @@ const ItemUpdate = (props) => {
 
     return (
         <Container>
-            <div>
-                <h4>Monster Hunter World</h4>
+            <div className='d-flex justify-content-between mt-2'>
+                <h4>Monster Hunter: World</h4>
             </div>
             <div className='d-flex flex-column align-items-center'>
-                <h3>Monster Drop Tracker</h3>
+                <h2>Monster Drop Tracker</h2>
             </div>
-            <div>
-                <h2>Edit {name}</h2>
+            <div className='d-flex justify-content-between mt-4'>
+                <h3>Edit {name}</h3>
             </div>
             <Form onSubmit={(updateItem)}>
                 <Form.Group className='mt-3 d-flex justify-content-around'>

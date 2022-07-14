@@ -35,15 +35,15 @@ const ItemView = () => {
 
     return (
         <Container>
-            <div className='d-flex justify-content-between'>
-                <h4>Monster Hunter World</h4>
+            <div className='d-flex justify-content-between mt-2'>
+                <h4>Monster Hunter: World</h4>
                 <Link to="/dashboard">Dashboard</Link>
             </div>
             <div className='d-flex flex-column align-items-center'>
-                <h3>Monster Drop Tracker</h3>
+                <h2>Monster Drop Tracker</h2>
             </div>
             <div>
-                <div className='d-flex justify-content-between'>
+                <div className='d-flex justify-content-between mt-4'>
                     <h3>{item.name}</h3>
                     <Link to={`/items/update/${item._id}`}>Edit</Link>
                 </div>

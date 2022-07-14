@@ -47,17 +47,18 @@ const Dashboard = (props) => {
 
     return (
         <Container>
-            <div>
-                <h4>Monster Hunter World</h4>
+            <div className='d-flex justify-content-between align-items-center mt-2'>
+                <h4>Monster Hunter: World</h4>
                 <Link to={"/"}>Logout</Link>
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <h2>Monster Drop Tracker</h2>
             </div>
-            <div>
+            <div className='d-flex justify-content-between align-items-center mt-2'>
                 <Link to={"/items/new"}>Create New Item to Track</Link>
+                <Link to={"/monsters"}>View Monsters</Link>
             </div>
-            <div>
+            <div className='mt-4'>
                 <h3>My Items:</h3>
                 <Table>
                     <thead>

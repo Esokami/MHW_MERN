@@ -3,7 +3,7 @@ const {authenticate} = require('../config/jwt.config');
 
 module.exports = (app) => {
     //Used to create
-    app.post('/api/items/', ItemController.createItem);
+    app.post('/api/items/', authenticate, ItemController.createItem);
 
     //Used to get all 
     app.get('/api/items/', ItemController.getAllItems);
@@ -15,7 +15,7 @@ module.exports = (app) => {
     app.get('/api/items/:id', ItemController.getOneItem);
 
     // Used to update 
-    app.put('/api/items/:id', ItemController.updateItem);
+    app.put('/api/items/:id', authenticate, ItemController.updateItem);
 
     //Used to delete
     app.delete('/api/items/:id', ItemController.deleteItem);

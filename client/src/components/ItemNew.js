@@ -27,7 +27,8 @@ const ItemNew = (props) => {
             materialName,
             quantityOwned,
             quantityNeeded
-        },{
+        },
+        {
             withCredentials: true
         })
 
@@ -50,7 +51,7 @@ const ItemNew = (props) => {
     return (
         <Container>
             <div>
-                <h4>Monster Hunter World</h4>
+                <h4>Monster Hunter: World</h4>
             </div>
             <div className='d-flex flex-column align-items-center'>
                 <h3>Monster Drop Tracker</h3>

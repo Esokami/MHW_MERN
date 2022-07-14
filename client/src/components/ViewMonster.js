@@ -6,7 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 const ViewMonster = (props) => {
-    const [monster, setMonster] = useState({});
+    const [monster, setMonster] = useState([]);
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -27,11 +27,18 @@ const ViewMonster = (props) => {
 
     return (
         <Container>
-            <div className='d-flex flex-row justify-content-between align-items-center'>
-                <h1>Monster Hunter World</h1>
-                <Link to="/">Back to home</Link>
+            <div className='d-flex justify-content-between align-items-center mt-2'>
+                <h4>Monster Hunter: World</h4>
+                <Link to={"/"}>Logout</Link>
             </div>
-            <div className='d-flex flex-row justify-content-between align-items-center'>
+            <div className='d-flex flex-column align-items-center'>
+                <h2>Monster Drop Tracker</h2>
+            </div>
+            <div className='d-flex justify-content-between align-items-center mt-2'>
+                <Link to="/dashboard">Back to Dashboard</Link>
+                <Link to="/monsters">Back to Monsters</Link>
+            </div>
+            <div className='d-flex flex-row justify-content-between align-items-center mt-4'>
                 <h3>{monster.name}:</h3>
             </div>
             <div>
@@ -41,8 +48,7 @@ const ViewMonster = (props) => {
                             <th>Type</th>
                             <th>Species</th>
                             <th>Description</th>
-                            <th>Locations</th>
-                            <th>Rewards</th>
+                            {/* <th>Locations</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -50,12 +56,23 @@ const ViewMonster = (props) => {
                             <td>{monster.type}</td>
                             <td>{monster.species}</td>
                             <td>{monster.description}</td>
-                            <td>{monster.species}</td>
-                            <td>{monster.species}</td>
+                            {/* <td>{monster.species}</td> */}
                         </tr>
                     </tbody>
                 </Table>
-                <Table striped bordered hover className='mt-3'>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Rewards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{monster.rewards}</td>
+                        </tr>
+                    </tbody>
+                </Table>
+                {/* <Table striped bordered hover className='mt-3'>
                     <thead>
                         <tr>
                             <th>Elements</th>
@@ -63,7 +80,7 @@ const ViewMonster = (props) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{monster.name}</td>
+                            <td>{monster.elements}</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -102,7 +119,7 @@ const ViewMonster = (props) => {
                             <td>{monster.species}</td>
                         </tr>
                     </tbody>
-                </Table>
+                </Table> */}
             </div>
         </Container>
     )

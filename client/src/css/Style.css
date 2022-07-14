@@ -7,5 +7,7 @@
 }
 
 .mainBackground {
-    background-color: slategray;
+    background-color: rgb(159, 223, 199);
+    min-height: 100vh;
+    padding: 2px;
 }

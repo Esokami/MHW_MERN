@@ -7,10 +7,12 @@ import Dashboard from './components/Dashboard';
 import ItemNew from './components/ItemNew';
 import ItemView from './components/ItemView';
 import ItemUpdate from './components/ItemUpdate';
+import  './css/Style.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <div className='mainBackground'>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
@@ -21,6 +23,7 @@ function App() {
         <Route path="/monsters/:id" element={<ViewMonster/>}/>
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 
