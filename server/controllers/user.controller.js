@@ -52,17 +52,20 @@ module.exports.login = (req, res) => {
                         }
                         else{
                             res.status(400).json({message: "Invalid Attempt"})
+                            res.status(400).json(err)
                         }
                     })
                     .catch((err) => {
                         console.log(err);
                         res.status(400).json({message: "Invalid Attempt"})
+                        res.status(400).json(err)
                     })
             }
         })
         .catch((err) => {
             console.log(err);
             res.status(400).json({message: "Invalid Attempt"})
+            res.status(400).json(err)
         })
 }
 

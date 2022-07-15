@@ -1,3 +1,12 @@
+*{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
 .mainIcons {
     width: 200px;
     height: 200px;
@@ -7,7 +16,75 @@
 }
 
 .mainBackground {
-    background-color: rgb(159, 223, 199);
+    /* background-color: rgb(147, 206, 184); */
+    background-color: rgb(142, 153, 164);
     min-height: 100vh;
     padding: 2px;
+}
+
+.header {
+    background-color: slategray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 10px;
+    border-bottom: 2px solid black;
+}
+
+.mhw-body {
+    background-color: rgb(114, 145, 170);
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.mhw-icon {
+    width: 35px;
+    height: 35px;
+    filter: grayscale(100%);
+    margin-left: 5px;
+}
+
+.s-icon {
+    background: url(../images/SearchIcon.webp) no-repeat left;
+    background-color: white;
+    background-size: 20px;
+    padding-left: 30px;
+}
+
+.t-head {
+    background-color: rgba(0, 0, 0, 0.242);
+}
+
+.t-body {
+    background-color: rgba(106, 223, 188, 0.493);
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.m-body {
+    background-color: rgba(157, 106, 223, 0.493);
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.l-body {
+    background-color: rgba(227, 244, 245, 0.925);
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 5px 10px 10px rgb(61, 61, 61);
+}
+
+.r-body {
+    background-color: rgba(227, 244, 245, 0.925);
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 5px 10px 10px rgb(61, 61, 61);
+}
+
+.link-text {
+    color: rgb(253, 253, 253);
 }

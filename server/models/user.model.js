@@ -21,13 +21,18 @@ const UserSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
+UserSchema.path('email').validate(async (value) => {
+    const emailCount = await mongoose.models.User.countDocuments({email: value});
+    return !emailCount;
+}, 'Email is already taken');
+
 UserSchema.virtual('confirmPassword')
     .get(()=> this._confirmPassword)
     .set((value) => this._confirmPassword = value);
 
 UserSchema.pre('validate', function(next) {
     if (this.password !== this.confirmPassword) {
-        this.invalidate('confirmPassword', 'Password must match confirm password');
+        this.invalidate('confirmPassword', 'Passwords must match');
         console.log("Passwords don't match")
     }
     next();
@@ -40,5 +45,6 @@ UserSchema.pre('save', function(next) {
             next();
         })
 })
+
 
 module.exports = mongoose.model('User', UserSchema);

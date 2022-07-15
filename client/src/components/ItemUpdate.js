@@ -4,6 +4,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import MHWIcon from '../images/MHW_Icon.png'
 
 const ItemUpdate = (props) => {
     const {id} = useParams();
@@ -59,60 +60,58 @@ const ItemUpdate = (props) => {
             })
     }
 
-    const cancelButton = () => {
-        navigate("/dashboard")
-    }
-
     return (
         <Container>
-            <div className='d-flex justify-content-between mt-2'>
-                <h4>Monster Hunter: World</h4>
+            <div className='d-flex justify-content-between align-items-center header'>
+                <h4><img src={MHWIcon} className="mhw-icon"></img><u>Monster Hunter: World</u></h4>
             </div>
-            <div className='d-flex flex-column align-items-center'>
-                <h2>Monster Drop Tracker</h2>
+            <div className='mhw-body'>
+                <div className='d-flex flex-column align-items-center'>
+                    <h2>Monster Drop Tracker</h2>
+                </div>
+                <div className='d-flex justify-content-between mt-4'>
+                    <h3>Edit {name}</h3>
+                </div>
+                <Form onSubmit={(updateItem)}>
+                    <Form.Group className='mt-3 d-flex justify-content-around'>
+                        <div className='p-2 border border-dark r-body'>
+                            <h4>Required</h4>
+                            <Form.Label>Name:</Form.Label>
+                            <Form.Control type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
+                            {
+                            errors.name ? (
+                                <p className="text-danger">{errors.name.message}</p>
+                            ) : null
+                            }
+                            <Form.Label>Object Type:</Form.Label>
+                            <Form.Control type="text" name="objectType" value={objectType} onChange={(e) => setObjectType(e.target.value)}></Form.Control>
+                            {
+                            errors.objectType ? (
+                                <p className="text-danger">{errors.objectType.message}</p>
+                            ) : null
+                            }
+                            <Form.Label>Monster:</Form.Label>
+                            <Form.Control type="text" name="monster" value={monster} onChange={(e) => setMonster(e.target.value)}></Form.Control>
+                            {
+                            errors.monster ? (
+                                <p className="text-danger">{errors.monster.message}</p>
+                            ) : null
+                            }
+                        </div>
+                        <div className='p-2 border border-dark r-body'>
+                            <h4>Optional</h4>
+                            <Form.Label>Material Name:</Form.Label>
+                                <Form.Control type="text" name="material" value={materialName} onChange={(e) => setMaterialName(e.target.value)}></Form.Control>
+                            <Form.Label>Quantity Owned:</Form.Label>
+                                <Form.Control type="number" name="quantityOwned" value={quantityOwned} onChange={(e) => setQuantityOwned(e.target.value)}></Form.Control>
+                            <Form.Label>Quantity Needed:</Form.Label>
+                                <Form.Control type="number" name="quantityNeeded" value={quantityNeeded} onChange={(e) => setQuantityNeeded(e.target.value)}></Form.Control>
+                        </div>
+                    </Form.Group>
+                    <Button className='m-2' variant="info" type="submit">Update</Button>
+                    <Button className='m-2' variant="warning" onClick={() => navigate("/dashboard")}>Cancel</Button>
+                </Form>
             </div>
-            <div className='d-flex justify-content-between mt-4'>
-                <h3>Edit {name}</h3>
-            </div>
-            <Form onSubmit={(updateItem)}>
-                <Form.Group className='mt-3 d-flex justify-content-around'>
-                    <div className='p-2 border border-dark'>
-                        <h4>Required</h4>
-                        <Form.Label>Name:</Form.Label>
-                        <Form.Control type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
-                        {
-                        errors.name ? (
-                            <p className="text-danger">{errors.name.message}</p>
-                        ) : null
-                        }
-                        <Form.Label>Object Type:</Form.Label>
-                        <Form.Control type="text" name="objectType" value={objectType} onChange={(e) => setObjectType(e.target.value)}></Form.Control>
-                        {
-                        errors.objectType ? (
-                            <p className="text-danger">{errors.objectType.message}</p>
-                        ) : null
-                        }
-                        <Form.Label>Monster:</Form.Label>
-                        <Form.Control type="text" name="monster" value={monster} onChange={(e) => setMonster(e.target.value)}></Form.Control>
-                        {
-                        errors.monster ? (
-                            <p className="text-danger">{errors.monster.message}</p>
-                        ) : null
-                        }
-                    </div>
-                    <div className='p-2 border border-dark'>
-                        <h4>Optional</h4>
-                        <Form.Label>Material Name:</Form.Label>
-                            <Form.Control type="text" name="material" value={materialName} onChange={(e) => setMaterialName(e.target.value)}></Form.Control>
-                        <Form.Label>Quantity Owned:</Form.Label>
-                            <Form.Control type="number" name="quantityOwned" value={quantityOwned} onChange={(e) => setQuantityOwned(e.target.value)}></Form.Control>
-                        <Form.Label>Quantity Needed:</Form.Label>
-                            <Form.Control type="number" name="quantityNeeded" value={quantityNeeded} onChange={(e) => setQuantityNeeded(e.target.value)}></Form.Control>
-                    </div>
-                </Form.Group>
-                <Button className='m-2' variant="info" type="submit">Update</Button>
-                <Button className='m-2' variant="warning" onClick={(cancelButton)}>Cancel</Button>
-            </Form>
         </Container>
     )
 }
