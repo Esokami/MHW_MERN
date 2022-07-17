@@ -55,8 +55,9 @@ const ItemNew = (props) => {
                 <div className='d-flex flex-column align-items-center'>
                     <h3>Monster Drop Tracker</h3>
                 </div>
+                <hr></hr>
                 <div>
-                    <h2>Create Item to Track</h2>
+                    <h3>Create Item to Track</h3>
                 </div>
                 <Form onSubmit={(onSubmitHandler)}>
                     <Form.Group className='mt-3 d-flex justify-content-around'>

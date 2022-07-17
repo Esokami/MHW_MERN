@@ -18,5 +18,5 @@ module.exports = (app) => {
     app.put('/api/items/:id', authenticate, ItemController.updateItem);
 
     //Used to delete
-    app.delete('/api/items/:id', ItemController.deleteItem);
+    app.delete('/api/items/:id', authenticate, ItemController.deleteItem);
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -69,6 +69,7 @@ const ItemUpdate = (props) => {
                 <div className='d-flex flex-column align-items-center'>
                     <h2>Monster Drop Tracker</h2>
                 </div>
+                <hr></hr>
                 <div className='d-flex justify-content-between mt-4'>
                     <h3>Edit {name}</h3>
                 </div>

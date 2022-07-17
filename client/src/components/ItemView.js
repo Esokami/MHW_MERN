@@ -23,11 +23,11 @@ const ItemView = () => {
     })
 
     const deleteItem = (itemId) => {
-        axios.delete('http://localhost:8000/api/items/' + itemId)
+        axios.delete('http://localhost:8000/api/items/' + itemId, {
+            withCredentials: true,
+        })
             .then((res) => {
-                const newItemList = item.filter((item, index) => item._id !== itemId);
-                navigate("/dashboard");
-                setItem(newItemList);
+                navigate("/dashboard")
             })
             .catch((err) => {
                 console.log(err);
@@ -45,11 +45,14 @@ const ItemView = () => {
                     <h2>Monster Drop Tracker</h2>
                 </div>
                 <div>
-                    <div className='d-flex justify-content-between mt-4'>
-                        <h3>{item.name}</h3>
+                    <div className='d-flex justify-content-end align-items-center mt-2'>
                         <Link to={`/items/update/${item._id}`} className="link-text">Edit</Link>
                     </div>
-                    <Table striped bordered hover className='t-body'>
+                    <hr></hr>
+                    <div className='mt-4'>
+                        <h3>{item.name}</h3>
+                    </div>
+                    <Table striped bordered className='t-body'>
                         <thead>
                             <tr className='t-head'>
                                 <th>Object Type</th>
@@ -63,7 +66,7 @@ const ItemView = () => {
                             </tr>
                         </tbody>
                     </Table>
-                    <Table striped bordered hover className='t-body'>
+                    <Table striped bordered className='t-body'>
                         <thead>
                             <tr className='t-head'>
                                 <th>Material Name</th>
@@ -83,7 +86,7 @@ const ItemView = () => {
                         <Button variant="info" onClick={() => navigate("/dashboard")}>Return</Button>
                         <Button variant="danger" onClick={() => {deleteItem(item._id)}}>Delete</Button>
                     </div>
-                    </div>
+                </div>
             </div>
         </Container>
     )

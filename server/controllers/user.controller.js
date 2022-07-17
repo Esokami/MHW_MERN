@@ -24,7 +24,7 @@ module.exports.login = (req, res) => {
     User.findOne({email: req.body.email})
         .then((user) => {
             if (user === null) {
-                res.status(400).json({message: "Invalid Login Attempt"})
+                return res.status(400).json({message: "Invalid Login Attempt"});
             }
             else{
                 bcrypt.compare(req.body.password, user.password)
@@ -72,10 +72,7 @@ module.exports.login = (req, res) => {
 module.exports.logout = (req, res) => {
     console.log("User logged out")
     res.clearCookie('usertoken');
-    res.sendStatus(200);
-    res.json({
-        message: "Successfully logged out"
-    })
+    return res.sendStatus(200);
 }
 
 module.exports.getLoggedInUser = (req, res) => {

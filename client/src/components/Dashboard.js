@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import MHWIcon from '../images/MHW_Icon.png'
+import Logout from './Logout';
 
 const Dashboard = (props) => {
     const [items, setItems] = useState([]);
@@ -23,7 +24,9 @@ const Dashboard = (props) => {
     }, []);
 
     const deleteItem = (itemId) => {
-        axios.delete('http://localhost:8000/api/items/' + itemId)
+        axios.delete('http://localhost:8000/api/items/' + itemId, {
+            withCredentials: true,
+        })
             .then((res) => {
                 const newItemList = items.filter((item, index) => item._id !== itemId);
                 setItems(newItemList);
@@ -44,13 +47,13 @@ const Dashboard = (props) => {
             .catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, []);
 
     return (
         <Container>
             <div className='d-flex justify-content-between align-items-center header'>
                 <h4><img src={MHWIcon} className="mhw-icon"></img><u>Monster Hunter: World</u></h4>
-                <Link to={"/"} className="link-text">Logout</Link>
+                <Logout/>
             </div>
             <div className='mhw-body'>
                 <div className='d-flex flex-column align-items-center'>
@@ -60,6 +63,7 @@ const Dashboard = (props) => {
                     <Link to={"/items/new"} className="link-text">Create New Item to Track</Link>
                     <Link to={"/monsters"} className="link-text">View Monsters</Link>
                 </div>
+                <hr></hr>
                 <div className='mt-4'>
                     <h3>My Items:</h3>
                     <Table striped hover bordered className='t-body'>
@@ -68,6 +72,7 @@ const Dashboard = (props) => {
                                 <th>Name</th>
                                 <th>Object Type</th>
                                 <th>Monster</th>
+                                <th>Created By</th>
                                 <th colSpan={2}>Actions</th>
                             </tr>
                         </thead>
@@ -79,6 +84,7 @@ const Dashboard = (props) => {
                                             <td>{item.name}</td>
                                             <td>{item.objectType}</td>
                                             <td>{item.monster}</td>
+                                            <td>{item.createdBy.username}</td>
                                             <td><Link to={`/items/view/${item._id}`} className="link-text">View</Link></td>
                                             <td><Button variant="danger" onClick={() => {deleteItem(item._id)}}>Delete</Button></td>
                                         </tr>

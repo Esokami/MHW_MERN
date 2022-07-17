@@ -15,6 +15,7 @@ const Main = () => {
                 <div className='d-flex flex-column align-items-center'>
                     <h2>Monster Drop Tracker</h2>
                 </div>
+                <hr></hr>
                 <div className='mt-3 d-flex justify-content-around'>
                     <Login/>
                     <Register/>
