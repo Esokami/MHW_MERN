@@ -8,6 +8,7 @@ module.exports = {
             (err, payload) => {
                 if(err){
                     console.log(err);
+                    console.log(req.cookies.usertoken);
                     res.status(401).json({verified: false})
                 }
                 else{

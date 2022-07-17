@@ -3,14 +3,19 @@ import axios from 'axios';
 import {Link, useParams, useNavigate} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-import MHWIcon from '../images/MHW_Icon.png'
+import MHWIcon from '../images/MHW_Icon.png';
+import ReactPaginate from 'react-paginate';
 
 const ViewMonster = (props) => {
     const [monster, setMonster] = useState([]);
     const [reward, setReward] = useState([]);
     const {id} = useParams();
     const navigate = useNavigate();
+
+    const [pageNumber, setPageNumber] = useState([]);
+    const itemsPerPage = 5;
+    const pagesVisited = pageNumber * itemsPerPage;
+    const pageCount = Math.ceil(reward.length / itemsPerPage);
 
     useEffect(() => {
         axios.get('https://mhw-db.com/monsters/' + id)
@@ -31,6 +36,20 @@ const ViewMonster = (props) => {
     const Capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
+
+    const displayRewards = reward
+        .slice(pagesVisited, pagesVisited + itemsPerPage)
+        .map((object, index) => {
+            return (
+                <tr key={index}>
+                    <td>{object.item.name}</td>
+                </tr>
+            )
+        })
+
+        const changePage = ({selected}) => {
+            setPageNumber(selected);
+        }
 
     return (
         <Container>
@@ -74,15 +93,18 @@ const ViewMonster = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                reward.map((object, index) => {
-                                    return (
-                                        <tr key={index}>
-                                            <td>{object.item.name}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                            {displayRewards}
+                            <ReactPaginate
+                                previousLabel={"<"}
+                                nextLabel={">"}
+                                pageCount={pageCount}
+                                onPageChange={changePage}
+                                containerClassName={"paginationButtons"}
+                                previousLinkClassName={"previousButton"}
+                                nextLinkClassName={"nextButton"}
+                                disabledClassName={"paginationDisabled"}
+                                activeClassName={"paginationActive"}
+                            />
                         </tbody>
                     </Table>
                 </div>

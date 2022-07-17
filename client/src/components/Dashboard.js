@@ -12,11 +12,19 @@ const Dashboard = (props) => {
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
 
+    const [loginStatus, setLoginStatus] = useState(false);
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/items')
             .then((res) => {
-                console.log(res.data);
-                setItems(res.data);
+                if (res.data.userLoggedIn === null){
+                    navigate("/");
+                }
+                else {
+                    console.log(res.data);
+                    setItems(res.data);
+                }
+                
             })
             .catch((err) => {
                 console.log(err);

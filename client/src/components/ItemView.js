@@ -20,7 +20,7 @@ const ItemView = () => {
             .catch((err) => {
                 console.log(err);
             })
-    })
+    }, [])
 
     const deleteItem = (itemId) => {
         axios.delete('http://localhost:8000/api/items/' + itemId, {
@@ -50,7 +50,7 @@ const ItemView = () => {
                     </div>
                     <hr></hr>
                     <div className='mt-4'>
-                        <h3>{item.name}</h3>
+                        <h3 className='m-name'>{item.name}</h3>
                     </div>
                     <Table striped bordered className='t-body'>
                         <thead>

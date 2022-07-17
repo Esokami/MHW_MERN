@@ -24,7 +24,8 @@ module.exports.login = (req, res) => {
     User.findOne({email: req.body.email})
         .then((user) => {
             if (user === null) {
-                return res.status(400).json({message: "Invalid Login Attempt"});
+                // email not found in users collection
+                return res.status(400).json({message: "User not found"});
             }
             else{
                 bcrypt.compare(req.body.password, user.password)
@@ -51,20 +52,19 @@ module.exports.login = (req, res) => {
                             });
                         }
                         else{
-                            res.status(400).json({message: "Invalid Attempt"})
-                            res.status(400).json(err)
+                            res.status(400).json({message: "Incorrect Password"});
                         }
                     })
                     .catch((err) => {
                         console.log(err);
-                        res.status(400).json({message: "Invalid Attempt"})
+                        res.status(400).json({message: "Incorrect Password"})
                         res.status(400).json(err)
                     })
             }
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).json({message: "Invalid Attempt"})
+            res.status(400).json({message: "Incorrect Password"})
             res.status(400).json(err)
         })
 }
@@ -72,7 +72,7 @@ module.exports.login = (req, res) => {
 module.exports.logout = (req, res) => {
     console.log("User logged out")
     res.clearCookie('usertoken');
-    return res.sendStatus(200);
+    res.json({message: "You have successfully logged out"})
 }
 
 module.exports.getLoggedInUser = (req, res) => {
