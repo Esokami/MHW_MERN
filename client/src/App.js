@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import ItemNew from './components/ItemNew';
 import ItemView from './components/ItemView';
 import ItemUpdate from './components/ItemUpdate';
+import WeaponNew from './components/weapons/WeaponNew';
 import  './css/Style.css';
 
 
@@ -14,12 +15,16 @@ function App() {
   return (
     <div className='mainBackground'>
       <BrowserRouter>
-      <Routes>
+      <Routes> 
         <Route path="/" element={<Main/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/items/new" element={<ItemNew/>}/>
+
+        <Route path="/items/new/armor" element={<ItemNew/>}/>
         <Route path="/items/view/:id" element={<ItemView/>}/>
         <Route path="/items/update/:id" element={<ItemUpdate/>}/>
+
+        <Route path="/items/new/weapon" element={<WeaponNew/>}/>
+
         <Route path="/monsters" element={<MonsterList/>}/>
         <Route path="/monsters/:id" element={<ViewMonster/>}/>
       </Routes>

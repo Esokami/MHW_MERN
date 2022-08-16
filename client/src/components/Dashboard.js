@@ -68,7 +68,10 @@ const Dashboard = (props) => {
                     <h2>Monster Drop Tracker</h2>
                 </div>
                 <div className='d-flex justify-content-between align-items-center mt-2'>
-                    <Link to={"/items/new"} className="link-text">Create New Item to Track</Link>
+                    <div className='d-flex flex-column'>
+                        <Link to={"/items/new/armor"} className="link-text">Track a piece of Armor</Link>
+                        <Link to={"/items/new/weapon"} className="link-text">Track a Weapon</Link>
+                    </div>
                     <Link to={"/monsters"} className="link-text">View Monsters</Link>
                 </div>
                 <hr></hr>

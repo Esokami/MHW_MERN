@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import MHWIcon from '../images/MHW_Icon.png'
+import MHWIcon from '../images/MHW_Icon.png';
+import gifIcon from '../images/monster-hunter-world-master-cat-chef.gif';
 
 const ItemNew = (props) => {
     const {items, setItems} = props;
@@ -15,8 +16,39 @@ const ItemNew = (props) => {
     const [quantityOwned, setQuantityOwned] = useState("");
     const [quantityNeeded, setQuantityNeeded] = useState("");
 
+    //Setting up item and monster selector using API data
+    const [rewardList, setRewardList] = useState([]);
+    const [monsterList, setMonsterList] = useState([]);
+    const [armorList, setArmorList] = useState([]);
+
     const navigate = useNavigate();
     const [errors, setErrors] = useState({});
+
+    //Get list of Armor from API
+    useEffect(() => {
+        axios.get('https://mhw-db.com/armor')
+            .then((res) => {
+                console.log(res.data);
+                setArmorList(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
+
+    //Get Monster and Reward from API
+    useEffect(() => {
+        axios.get('https://mhw-db.com/monsters')
+            .then((res) => {
+                console.log(res.data);
+                setMonsterList(res.data);
+                setRewardList(res.data.rewards);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
+
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -64,31 +96,45 @@ const ItemNew = (props) => {
                         <div className='p-2 border border-dark l-body'>
                             <h4>Required</h4>
                             <div>
-                                <Form.Label>Name:</Form.Label>
-                                <Form.Control type="text" onChange={(e) => setName(e.target.value)}></Form.Control>
-                                {
-                                    errors.name ? (
-                                        <p className="text-danger">{errors.name.message}</p>
-                                    ) : null
-                                }
-                            </div>
-                            <div>
-                                <Form.Label>Object Type:</Form.Label>
-                                <Form.Control type="text" onChange={(e) => setObjectType(e.target.value)}></Form.Control>
-                                {
-                                    errors.objectType ? (
-                                        <p className="text-danger">{errors.objectType.message}</p>
-                                    ) : null
-                                }
-                            </div>
-                            <div>
                                 <Form.Label>Monster:</Form.Label>
-                                <Form.Control type="text" onChange={(e) => setMonster(e.target.value)}></Form.Control>
-                                {
-                                    errors.monster ? (
-                                        <p className="text-danger">{errors.monster.message}</p>
-                                    ) : null
-                                }
+                                <Form.Select value={monster} onChange={(e) => setMonster(e.target.value)}>
+                                    <option value="none" selected>--Select a Monster--</option>
+                                    {
+                                        monsterList.map((monster, index) => {
+                                            return (
+                                                <option>{monster.name}</option>
+                                            )
+                                        })
+                                    // errors.monster ? (
+                                    //     <p className="text-danger">{errors.monster.message}</p>
+                                    // ) : null
+                                    }
+                                </Form.Select>
+                            </div>
+                            <div>
+                                <Form.Label>Item Name:</Form.Label>
+                                <Form.Select value={name} onChange={(e) => setName(e.target.value)}>
+                                    <option value="none" selected>--Select Item--</option>
+                                    {
+                                        armorList.map((armor, index) => {
+                                            return (
+                                                <option>{armor.name}</option>
+                                            )
+                                        })
+
+                                        // errors.name ? (
+                                        //     <p className="text-danger">{errors.name.message}</p>
+                                        // ) : null
+                                    }
+                                </Form.Select>
+                            </div>
+                            <div>
+                                <Form.Label>Item Type:</Form.Label>
+                                <Form.Select onChange={(e) => setObjectType(e.target.value)}>
+                                    <option value="none" selected>--Select Type--</option>
+                                    <option>Armor</option>
+                                    <option>Weapon</option>
+                                </Form.Select>
                             </div>
                         </div>
                         <div className='p-2 border border-dark l-body'>
