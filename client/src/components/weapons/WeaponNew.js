@@ -99,7 +99,9 @@ const ItemNew = (props) => {
                                 <Form.Select value={monster} onChange={(e) => setMonster(e.target.value)}>
                                     <option value="none" selected>--Select a Monster--</option>
                                     {
-                                        monsterList.map((monster, index) => {
+                                        monsterList
+                                        .sort((a, b) => (a.name > b.name) ? 1: -1)
+                                        .map((monster, index) => {
                                             return (
                                                 <option>{monster.name}</option>
                                             )
@@ -115,7 +117,9 @@ const ItemNew = (props) => {
                                 <Form.Select value={name} onChange={(e) => setName(e.target.value)}>
                                     <option value="none" selected>--Select Weapon--</option>
                                     {
-                                        weaponList.map((weapon, index) => {
+                                        weaponList
+                                        .sort((a, b) => (a.name > b.name) ? 1: -1)
+                                        .map((weapon, index) => {
                                             return (
                                                 <option>{weapon.name}</option>
                                             )
@@ -131,20 +135,20 @@ const ItemNew = (props) => {
                                 <Form.Label>Weapon Type:</Form.Label>
                                 <Form.Select onChange={(e) => setObjectType(e.target.value)}>
                                     <option value="none" selected>--Select Type--</option>
-                                    <option>Great Sword</option>
-                                    <option>Long Sword</option>
-                                    <option>Sword and Shield</option>
-                                    <option>Dual Blades</option>
-                                    <option>Hammer</option>
-                                    <option>Hunting Horn</option>
-                                    <option>Lance</option>
-                                    <option>Gunlance</option>
-                                    <option>Switch Axe</option>
-                                    <option>Charge Blade</option>
-                                    <option>Insect Glaive</option>
-                                    <option>Light Bowgun</option>
-                                    <option>Heavy Bowgun</option>
                                     <option>Bow</option>
+                                    <option>Charge Blade</option>
+                                    <option>Dual Blades</option>
+                                    <option>Great Sword</option>
+                                    <option>Gunlance</option>
+                                    <option>Hammer</option>
+                                    <option>Heavy Bowgun</option>
+                                    <option>Hunting Horn</option>
+                                    <option>Insect Glaive</option>
+                                    <option>Lance</option>
+                                    <option>Light Bowgun</option>
+                                    <option>Long Sword</option>
+                                    <option>Switch Axe</option>
+                                    <option>Sword and Shield</option>
                                 </Form.Select>
                             </div>
                         </div>

@@ -55,7 +55,7 @@ const ItemView = () => {
                     <Table striped bordered className='t-body'>
                         <thead>
                             <tr className='t-head'>
-                                <th>Object Type</th>
+                                <th>Armor Type</th>
                                 <th>Monster</th>
                             </tr>
                         </thead>

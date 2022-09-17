@@ -84,7 +84,7 @@ const ItemUpdate = (props) => {
                                 <p className="text-danger">{errors.name.message}</p>
                             ) : null
                             }
-                            <Form.Label>Object Type:</Form.Label>
+                            <Form.Label>Armor Type:</Form.Label>
                             <Form.Control type="text" name="objectType" value={objectType} onChange={(e) => setObjectType(e.target.value)}></Form.Control>
                             {
                             errors.objectType ? (

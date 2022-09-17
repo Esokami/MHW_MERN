@@ -77,7 +77,6 @@ const ItemNew = (props) => {
             })
     }
 
-
     return (
         <Container>
             <div className='d-flex justify-content-between align-items-center header'>
@@ -89,7 +88,7 @@ const ItemNew = (props) => {
                 </div>
                 <hr></hr>
                 <div>
-                    <h3>Create Item to Track</h3>
+                    <h3>Track a piece of Armor</h3>
                 </div>
                 <Form onSubmit={(onSubmitHandler)}>
                     <Form.Group className='mt-3 d-flex justify-content-around'>
@@ -100,7 +99,9 @@ const ItemNew = (props) => {
                                 <Form.Select value={monster} onChange={(e) => setMonster(e.target.value)}>
                                     <option value="none" selected>--Select a Monster--</option>
                                     {
-                                        monsterList.map((monster, index) => {
+                                        monsterList
+                                        .sort((a, b) => (a.name > b.name) ? 1: -1)
+                                        .map((monster, index) => {
                                             return (
                                                 <option>{monster.name}</option>
                                             )
@@ -112,16 +113,17 @@ const ItemNew = (props) => {
                                 </Form.Select>
                             </div>
                             <div>
-                                <Form.Label>Item Name:</Form.Label>
+                                <Form.Label>Armor Name:</Form.Label>
                                 <Form.Select value={name} onChange={(e) => setName(e.target.value)}>
                                     <option value="none" selected>--Select Item--</option>
                                     {
-                                        armorList.map((armor, index) => {
+                                        armorList
+                                        .sort((a,b) => (a.name > b.name) ? 1: -1)
+                                        .map((armor, index) => {
                                             return (
                                                 <option>{armor.name}</option>
                                             )
                                         })
-
                                         // errors.name ? (
                                         //     <p className="text-danger">{errors.name.message}</p>
                                         // ) : null
@@ -129,11 +131,14 @@ const ItemNew = (props) => {
                                 </Form.Select>
                             </div>
                             <div>
-                                <Form.Label>Item Type:</Form.Label>
+                                <Form.Label>Armor Type:</Form.Label>
                                 <Form.Select onChange={(e) => setObjectType(e.target.value)}>
                                     <option value="none" selected>--Select Type--</option>
-                                    <option>Armor</option>
-                                    <option>Weapon</option>
+                                    <option>Head</option>
+                                    <option>Chest</option>
+                                    <option>Gloves</option>
+                                    <option>Waist</option>
+                                    <option>Legs</option>
                                 </Form.Select>
                             </div>
                         </div>
