@@ -10,16 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join("client/build")));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-    });
-}
-
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on port: ${process.env.PORT}`)
-})
+app.listen(process.env.PORT || 3000);
 
 require('./config/mongoose.config');
 require('./routes/item.routes')(app);
