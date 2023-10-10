@@ -10,13 +10,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join("client/src")));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client", "src", "index.js"))
-    });
-}
-
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port: ${process.env.PORT}`)
 })
