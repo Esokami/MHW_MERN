@@ -12,6 +12,13 @@ root.render(
   </React.StrictMode>
 );
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join("client/build")));
+  app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  });
+}
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
