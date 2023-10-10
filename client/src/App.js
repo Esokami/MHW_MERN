@@ -8,6 +8,7 @@ import ItemNew from './components/ItemNew';
 import ItemView from './components/ItemView';
 import ItemUpdate from './components/ItemUpdate';
 import WeaponNew from './components/weapons/WeaponNew';
+import VerifyUser from './components/VerifyUser';
 import  './css/Style.css';
 
 
@@ -27,6 +28,8 @@ function App() {
 
         <Route path="/monsters" element={<MonsterList/>}/>
         <Route path="/monsters/:id" element={<ViewMonster/>}/>
+
+        <Route path="/user/verify" element={<VerifyUser/>}/>
       </Routes>
     </BrowserRouter>
     </div>
