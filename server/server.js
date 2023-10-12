@@ -7,6 +7,8 @@ const { application } = require('express');
 const path = require('path');
 const PORT = process.env.PORT || '8000'
 
+app.set("port", PORT);
+
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
