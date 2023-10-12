@@ -17,10 +17,9 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-app.listen(
-    PORT,
-    console.log(`Server running on ${process.env.NODE_ENV}`)
-);
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 require('./config/mongoose.config');
 require('./routes/item.routes')(app);
