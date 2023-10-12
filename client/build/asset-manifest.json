@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/MHW_MERN/static/css/main.4db4d8d9.css",
+    "main.js": "/MHW_MERN/static/js/main.5999f1f4.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/MHW_MERN/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/monster-hunter-world-master-cat-chef.gif": "/MHW_MERN/static/media/monster-hunter-world-master-cat-chef.49aaede73ff572659562.gif",
+    "static/media/MHW_Icon.png": "/MHW_MERN/static/media/MHW_Icon.aeec9ce0e95fc41ccbb4.png",
+    "static/media/SearchIcon.webp": "/MHW_MERN/static/media/SearchIcon.a7399243516ec7032b08.webp",
+    "index.html": "/MHW_MERN/index.html",
+    "main.4db4d8d9.css.map": "/MHW_MERN/static/css/main.4db4d8d9.css.map",
+    "main.5999f1f4.js.map": "/MHW_MERN/static/js/main.5999f1f4.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/MHW_MERN/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4db4d8d9.css",
+    "static/js/main.5999f1f4.js"
+  ]
+}
