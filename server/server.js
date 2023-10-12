@@ -17,9 +17,10 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on port: ${process.env.PORT}`)
-})
+app.listen(
+    PORT,
+    console.log(`Server running on ${process.env.NODE_ENV}`)
+);
 
 require('./config/mongoose.config');
 require('./routes/item.routes')(app);
