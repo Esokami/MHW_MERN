@@ -19,7 +19,7 @@ const ItemUpdate = (props) => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/items/' + id)
+        axios.get('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items/' + id)
             .then((res) => {
                 console.log(res);
                 setName(res.data.name);
@@ -37,7 +37,7 @@ const ItemUpdate = (props) => {
     const updateItem = (e) => {
         e.preventDefault();
 
-        axios.put('http://localhost:8000/api/items/' + id, {
+        axios.put('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items/' + id, {
             name,
             objectType,
             monster,

@@ -15,7 +15,7 @@ const Login = () => {
     const loginUser = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/users/login', 
+        axios.post('https://mhw-mern-b2887bec97f6.herokuapp.com/api/users/login', 
         {
             email, 
             password,

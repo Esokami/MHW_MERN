@@ -17,7 +17,7 @@ const Register = () => {
     const registerUser = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/users/register', {
+        axios.post('https://mhw-mern-b2887bec97f6.herokuapp.com/api/users/register', {
             email,
             username,
             password,

@@ -7,7 +7,7 @@ const VerifyUser = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users',
+        axios.get('https://mhw-mern-b2887bec97f6.herokuapp.com/api/users',
             {withCredentials: true}
         )
             .then((res) => {

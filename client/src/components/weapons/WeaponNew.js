@@ -52,7 +52,7 @@ const ItemNew = (props) => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/items/', {
+        axios.post('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items/', {
             name,
             objectType,
             monster,
