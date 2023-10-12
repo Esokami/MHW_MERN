@@ -10,7 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port: ${process.env.PORT}`)
+})
 
 require('./config/mongoose.config');
 require('./routes/item.routes')(app);
