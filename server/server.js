@@ -7,7 +7,6 @@ const { application } = require('express');
 const path = require('path');
 const PORT = process.env.PORT || '8080';
 const mongoose = require('mongoose');
-const URI = process.env.MONGODB_URI;
 
 app.set("port", PORT);
 
@@ -28,7 +27,7 @@ app.listen(
     console.log(`Server running on ${process.env.NODE_ENV}`)
 );
 
-mongoose.connect(URI, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
