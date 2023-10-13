@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://mollicaes:RwYATnlGWMRphDhn@monsterhunter-east.mrncrjx.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://mollicaes:QFentETo8JYQVeAM@monsterhunter-east.mrncrjx.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

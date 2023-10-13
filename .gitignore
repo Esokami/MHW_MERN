@@ -3,4 +3,4 @@ coverage/
 build/
 .DS_Store
 .env
-config/mongoose.config.js
+mongoose.config.js
