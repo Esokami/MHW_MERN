@@ -1,5 +1,6 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-export const URI = process.env.MONGODB_URI;
+const URI = process.env.MONGODB_URI;
 
 mongoose.connect(URI, {
     useNewUrlParser: true,
