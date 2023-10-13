@@ -12,7 +12,7 @@ const ItemView = () => {
     const navigate = useNavigate();
 
     useEffect( () => {
-        axios.get('http://localhost:8000/api/items/' + id)
+        axios.get('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items/' + id)
             .then((res) => {
                 console.log(res.data);
                 setItem(res.data);
@@ -23,7 +23,7 @@ const ItemView = () => {
     }, [])
 
     const deleteItem = (itemId) => {
-        axios.delete('http://localhost:8000/api/items/' + itemId, {
+        axios.delete('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items/' + itemId, {
             withCredentials: true,
         })
             .then((res) => {

@@ -15,7 +15,7 @@ const Dashboard = (props) => {
     const [loginStatus, setLoginStatus] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/items')
+        axios.get('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items')
             .then((res) => {
                 if (res.data.userLoggedIn === null){
                     navigate("/");
@@ -32,7 +32,7 @@ const Dashboard = (props) => {
     }, []);
 
     const deleteItem = (itemId) => {
-        axios.delete('http://localhost:8000/api/items/' + itemId, {
+        axios.delete('https://mhw-mern-b2887bec97f6.herokuapp.com/api/items/' + itemId, {
             withCredentials: true,
         })
             .then((res) => {
@@ -45,7 +45,7 @@ const Dashboard = (props) => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users',
+        axios.get('https://mhw-mern-b2887bec97f6.herokuapp.com/api/users',
             {withCredentials: true}
         )
             .then((res) => {

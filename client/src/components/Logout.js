@@ -7,7 +7,7 @@ const Logout = () => {
     const navigate = useNavigate();
 
     const logoutUser = (e) => {
-        axios.post('http://localhost:8000/api/users/logout')
+        axios.post('https://mhw-mern-b2887bec97f6.herokuapp.com/api/users/logout')
             .then((res) => {
                 navigate("/");
             })
