@@ -89,7 +89,7 @@ const Dashboard = (props) => {
                         </thead>
                         <tbody>
                             {
-                                items.Map((item, index) => {
+                                items.map((item, index) => {
                                     return (
                                         <tr key={index}>
                                             <td>{item.name}</td>
