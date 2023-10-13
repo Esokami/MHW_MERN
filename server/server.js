@@ -7,7 +7,7 @@ const { application } = require('express');
 const path = require('path');
 const PORT = process.env.PORT || '8080';
 const mongoose = require('mongoose');
-const URI = process.env.MONGDB_URI;
+const URI = process.env.MONGODB_URI;
 
 app.set("port", PORT);
 
