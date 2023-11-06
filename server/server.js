@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const { application } = require('express');
 const path = require('path');
 const PORT = process.env.PORT || '8080';
-const mongoose = require('mongoose');
 
 app.set("port", PORT);
 
@@ -27,13 +26,6 @@ app.listen(
     console.log(`Server running on ${process.env.NODE_ENV}`)
 );
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-
-    .then(() => console.log("Established a connection to the database"))
-    .catch(err => console.log("Something went wrong when connecting to the database", err));
 
 require('./routes/item.routes')(app);
 require('./routes/user.routes')(app);
